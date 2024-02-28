@@ -1,19 +1,27 @@
 from typing import Callable
 
+
+
+#binaire_r(x//2) renvoie une chaîne de caractères représentant les bits binaires les plus significatifs de x, 
+#str(x % 2) renvoie une chaîne de caractères représentant le bit binaire le moins significatif de x
 def binaire_r(x:int)->str:
   if (x<2):
-    return str(x)
-  else :
+    return str(x) # cas de base
+  else : 
     return binaire_r(x//2)+str(x%2)
 
-#récursif terminal 
+#récursif terminal
+  # Fonction auxiliaire pour gérer l'accumulation de l'accumulateur 
 def b_helper(x:int,s:str)->str:
+  print(s)
   if (x<2):
-    return str(x%2) + s
-  else :
-    return b_helper(x//2, str(x%2)+s)
+    return str(x%2) + s  # Ajout du bit binaire final à l'accumulateur
+  else : 
+    return b_helper(x//2, str(x%2)+s) # Appel récursif avec l'accumulateur mis à jour
   
-binaire_rt:Callable[[int],str] = lambda x: b_helper(x, "")
+  
+ # Fonction principale qui initialise l'accumulateur et appelle la fonction auxiliaire
+binaire_rt:Callable[[int],str] = lambda x: b_helper(x, "") 
 
 #base 3 récursif terminal 
 def b3_helper(x:int, s:str)->str:
